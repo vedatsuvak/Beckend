@@ -244,14 +244,14 @@ public class ParticipantsDAO {
     //DONE
     //Send SMS
     public String sendSMS(String pname){
-    	System.out.println("SMS sent to: " + pname);
+    	System.out.println("[DB] SMS sent to: " + pname);
 		return pname;
     }
     
     //DONE
     //Send Email
     public String sendEmail(String pname){
-    	System.out.println("Email sent to: " + pname);
+    	System.out.println("[DB] Email sent to: " + pname);
 		return pname;
     }
 }

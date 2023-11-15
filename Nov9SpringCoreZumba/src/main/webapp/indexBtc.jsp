@@ -15,7 +15,7 @@
 		    session.setAttribute("actionSuccessful", true);
 		}
 		function startBatch() {
-		    return confirm("Are you sure to Start Batch?");
+		    return confirm("Are you sure to START Batch?\nApplication will SEND SMS and EMAIL to Participants..!");
 		}
 	</script>
     <title>Batches</title>

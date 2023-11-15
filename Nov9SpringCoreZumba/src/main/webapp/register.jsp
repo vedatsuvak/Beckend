@@ -18,7 +18,7 @@ if (!isLoggedIn || username.equalsIgnoreCase("admin")) {
 </head>
 <body style="background-image: url('views/register.jpg'); background-size: cover;">
 	<div class="link-container">
-	<h1 style="color: yellow;"><i>Registration Form</i></h1>
+	<h1 style="color: aqua;"><i>Registration Form</i></h1>
 	<form action="register" method="post">
 	    <table class="container">
 	        <tr class='label'>
@@ -45,7 +45,7 @@ if (!isLoggedIn || username.equalsIgnoreCase("admin")) {
 	</div>
 	<div style="text-align: center;">
 	    <form action="login.jsp" method="GET">
-	        <p style="color: yellow;">Already Registered?
+	        <p style="color: pink;">Already Registered?
 	        <input type="submit" value="Login"></p>
 	    </form>
 	</div>

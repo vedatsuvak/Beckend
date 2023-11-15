@@ -9,8 +9,8 @@
 </head>
 
 <body style="background-image: url('views/main.jpg'); background-size: cover;">
-	<h1 class ="link-container"><i>Welcome to My Application</i></h1>
-	<h3 class ="link-container"><i>Zumba Company Inc®</i></h3>
+	<h1 class ="link-container" style="color: aqua;"><i>Welcome to My Application</i></h1>
+	<h3 class ="link-container" style="color: yellow;"><i>Zumba Company Inc®</i></h3>
 	<%
 	response.setContentType("text/html");
 	boolean isLoggedIn = session.getAttribute("username") != null;

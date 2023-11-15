@@ -16,6 +16,12 @@ if (isLoggedIn && username.equalsIgnoreCase("admin")) {
 <head>
 	<meta charset="UTF-8">
 	<title>Users</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script>
+		function confirmDelete() {
+		    return confirm("Are you sure you want to Delete User's Account?");
+		}
+	</script>
 </head>
 <body>
 	<div style="text-align: center;">
@@ -46,9 +52,7 @@ if (isLoggedIn && username.equalsIgnoreCase("admin")) {
 				<td><form action="./editUser.jsp?username=" method="get">
 					<input type="hidden" name="username" value="<%= u.getUsername() %>">
 				    <button type="submit">Edit User</button></form></td>
-				<td><form action="deleteUser?username=" method="get">
-					<input type="hidden" name="username" value="<%= u.getUsername() %>">
-					<button type="submit">Delete User</button></form></td>
+				<td><button onclick="if(confirmDelete()) { window.location.href='deleteUser?username=<%= u.getUsername() %>'; }">Delete User</button></td>
 			<% } %>
 			</tr>
 			<% } 	       

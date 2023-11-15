@@ -15,7 +15,7 @@ if (!isLoggedIn) {
 </head>
 <body style="background-image: url('views/loginspace.jpg'); background-size: cover;">
 	<div class="link-container">
-		<h1 style="color: yellow;"><i>Login form </i></h1>
+		<h1 style="color: aqua;"><i>Login form </i></h1>
 		<form action="login">			
 			<table class="container">
 			  <tr class='label'>
@@ -32,7 +32,7 @@ if (!isLoggedIn) {
 			</table>
 		</form>
 		<form action="register.jsp" method="post">
-			<p style="color: yellow;">Still not registered?
+			<p style="color: pink">Still not registered?
 			<input type="submit" value="Register Here!"></p>	
 		</form>
 	</div>

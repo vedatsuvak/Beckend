@@ -8,6 +8,15 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="<c:url value="/css/styles.css" />" rel="stylesheet"></link>
+	    <script>
+		function confirmDelete() {
+		    return confirm("Are you sure you want to DELETE your account?");
+		    session.setAttribute("actionSuccessful", true);
+		}
+		function confirmDelete() {
+		    return confirm("Dont fucking delete your shitty account..!");
+		}
+	</script>
 </head>
 <%		String username = (String) session.getAttribute("username");
 		boolean isLoggedIn = session.getAttribute("username") != null;
@@ -36,11 +45,12 @@
         <input type="submit" value="Edit User">
     </form><br>
        
-    <form action="deleteUser?username=" method="get">
+    <form action="deleteUser?username=" method="get" onsubmit="return confirmDelete();">
     	<input type="hidden" name="username" value="<%= name %>">
        <p>Do you want to delete your account?</p>
        <p>Please don't abandon us!</p>
        <p>If you insist, then click the button below :</p>
+       
        <input type="submit" value="Destroy"> my account..!
     </form>
         

@@ -55,7 +55,7 @@ if (isLoggedIn && username.equalsIgnoreCase("admin")) {
                     <td><%= p.getPhone() %></td>
                     <td><%= p.getEmail().toLowerCase() %></td>
 					<td><button onclick="window.location.href='editParticipant.jsp?pid=<%= p.getPid() %>'" value="<%= request.getParameter("pid") %>">Edit Participant</button></td>                    
-					<td><button onclick="if(confirmDelete()) { window.location.href='deleteParticipant.jsp?pid=<%= p.getPid() %>'; }">Unregister Participant</button></td>
+					<td><button onclick="if(confirmDelete()) { window.location.href='deleteParticipant?pid=<%= p.getPid() %>'; }">Unregister Participant</button></td>
                 </tr>
             <% } 
             RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
