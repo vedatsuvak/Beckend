@@ -7,6 +7,19 @@ public class Batch {
     private String startTime;
     private String startDate;
 
+    public Batch() {
+	// TODO Auto-generated constructor stub
+    }
+    
+	public Batch(int bid, String bname, String instructor, String startTime, String startDate) {
+		super();
+		this.bid = bid;
+		this.bname = bname;
+		this.instructor = instructor;
+		this.startTime = startTime;
+		this.startDate = startDate;
+	}
+
 	public int getBid() {
 		return bid;
 	}

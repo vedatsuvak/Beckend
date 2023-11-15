@@ -9,6 +9,21 @@ public class Participants {
 	private String email; 
 	private int bid;
 	
+	public Participants() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Participants(int pid, String pname, int age, String gender, String phone, String email, int bid) {
+		super();
+		this.pid = pid;
+		this.pname = pname;
+		this.age = age;
+		this.gender = gender;
+		this.phone = phone;
+		this.email = email;
+		this.bid = bid;
+	}
+
 	public int getPid() {
 		return pid;
 	}
