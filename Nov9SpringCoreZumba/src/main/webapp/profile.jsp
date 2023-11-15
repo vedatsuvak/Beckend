@@ -50,7 +50,6 @@
        <p>Do you want to delete your account?</p>
        <p>Please don't abandon us!</p>
        <p>If you insist, then click the button below :</p>
-       
        <input type="submit" value="Destroy"> my account..!
     </form>
         
