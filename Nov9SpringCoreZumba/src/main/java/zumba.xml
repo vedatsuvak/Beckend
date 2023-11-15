@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    
+	<mvc:resources mapping="/css/styles.css" location="/css/styles.css" />
+
+
+	<!-- create a bean for User -->
+	<bean id="user" class="com.gms.model.User"></bean>   
+	<!-- create a bean for UsersDAO -->
+	<bean id="usersdao" class="com.gms.DAO.UsersDAO">
+		<property name="temp" ref="jdbctemp"></property>
+	</bean>
+	
+	<!-- create a bean for Batch -->
+	<bean id="batch" class="com.gms.model.Batch"></bean>  
+	<!-- create a bean for BatchDAO -->
+	<bean id="batchdao" class="com.gms.DAO.BatchDAO">
+		<property name="temp" ref="jdbctemp"></property>
+	</bean>
+	
+	<!-- create a bean for Participants -->
+	<bean id="participants" class="com.gms.model.Participants"></bean>   
+	<!-- create a bean for ParticipantsDAO -->
+	<bean id="participantsdao" class="com.gms.DAO.ParticipantsDAO">
+		<property name="temp" ref="jdbctemp"></property>
+	</bean>
+	 
+	<!-- create a bean for JdbcTemplate -->
+	<bean id="jdbctemp" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ds"></property>
+	</bean>
+	  
+	<!-- create a bean for datasource(driver,connection-dburl,username,pwd) -->
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/zumba"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="27082014"></property>
+	 </bean>
+ 	
+</beans>
