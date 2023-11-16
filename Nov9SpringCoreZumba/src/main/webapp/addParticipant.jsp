@@ -1,12 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ page import="com.gms.model.Participants"%>
 <%@ page import="com.gms.DAO.UsersDAO"%>
 <%@ page import="com.gms.model.User"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.springframework.context.ApplicationContext"%>
 <%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +15,9 @@
 <%
 boolean isLoggedIn = session.getAttribute("username") != null;
 String username = (String) session.getAttribute("username");
-
-
 String bid = request.getParameter("bid");
 RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
 rd.include(request, response);
-
 ApplicationContext ac = new ClassPathXmlApplicationContext("zumba.xml");
 UsersDAO udao = ac.getBean(UsersDAO.class);
 List <User> userlist = udao.displayUsers();
@@ -39,27 +34,24 @@ List <User> userlist = udao.displayUsers();
                 <td class="right">Participant ID</td>
                 <td>Auto Increment<input type="hidden" name="pid"></td>
             </tr>               
-<%
-		if (isLoggedIn && username.equalsIgnoreCase("admin")) {			
-%>			<tr>
+<% if (isLoggedIn && username.equalsIgnoreCase("admin")) { %>
+			<tr>
                 <td class="right">Participant Name</td>
                 <td> <select name="name" size="3" required>
-                <%for(User user : userlist) {  %>
+                <% for(User user : userlist) { %>
                      <option value="<%= user.getUsername() %>"><%= user.getUsername().toUpperCase() %></option>
                 <% } %>
                 </select></td>
             </tr>
-                <%
-                }else if(isLoggedIn && !username.equalsIgnoreCase("admin")) {%>
+<% } else if(isLoggedIn && !username.equalsIgnoreCase("admin")) { %>
             <tr>            
             	<td class="right">Participant Name</td>
 			    <td><%= username.toUpperCase() %><input type="hidden" name="name" value="<%= username %>" required></td>
 			</tr>
-			    <%
-			    }else {
-			  		// User is not logged in
-			  		response.sendRedirect("login.jsp");
-			  	}%>     
+<% } else {
+	// User is not logged in
+	response.sendRedirect("login.jsp");
+}%>     
             <tr>
                 <td class="right">Age</td>
                 <td><input type="text" name="age" pattern="^(0?[1-9]|[1-9][0-9])$" title="Enter a valid age between 1 and 99." required></td>

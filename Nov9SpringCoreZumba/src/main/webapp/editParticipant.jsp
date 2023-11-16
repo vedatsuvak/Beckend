@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.gms.DAO.ParticipantsDAO"%>
 <%@ page import="com.gms.model.Participants"%>
-<%@ page import="com.gms.DAO.UsersDAO"%>
-<%@ page import="com.gms.model.User"%>
-<%@ page import="java.util.List"%>
 <%@ page import="org.springframework.context.ApplicationContext"%>
 <%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%
@@ -11,20 +8,19 @@ boolean isLoggedIn = session.getAttribute("username") != null;
 String username = (String) session.getAttribute("username");
 ApplicationContext ac = new ClassPathXmlApplicationContext("zumba.xml");
 ParticipantsDAO pdao = ac.getBean(ParticipantsDAO.class);
-	//Only for Admin
-	if (isLoggedIn && username.equalsIgnoreCase("admin")) {
-		int pid = Integer.parseInt(request.getParameter("pid"));
-		Participants selected = pdao.getParticipant(pid);
-		if (selected != null) {
-			int bid = selected.getBid();
-			String pname = selected.getPname();
-			int age = selected.getAge();
-			String gender = selected.getGender();
-			String phone = selected.getPhone();
-			String email = selected.getEmail();
-			// Include main.jsp page
-            RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-            rd.include(request, response);
+RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+rd.include(request, response);
+//Only for Admin
+if (isLoggedIn && username.equalsIgnoreCase("admin")) {
+	int pid = Integer.parseInt(request.getParameter("pid"));
+	Participants selected = pdao.getParticipant(pid);
+	if (selected != null) {
+		int bid = selected.getBid();
+		String pname = selected.getPname();
+		int age = selected.getAge();
+		String gender = selected.getGender();
+		String phone = selected.getPhone();
+		String email = selected.getEmail();
 %>
 <!DOCTYPE html>
 <html>
@@ -83,9 +79,9 @@ ParticipantsDAO pdao = ac.getBean(ParticipantsDAO.class);
 		session.setAttribute("editparticipant", true);
 		session.setAttribute("error", true);
 		response.sendRedirect("error.jsp");
-		}
-	} else {
+	}
+} else {
 	// Other users restricted
 	response.sendRedirect("login.jsp");
-	}
+}
 %>

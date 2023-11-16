@@ -6,9 +6,10 @@
 <%
 boolean isLoggedIn = session.getAttribute("username") != null;
 String username = (String) session.getAttribute("username");
-//Admin Access Only
-if (isLoggedIn && username.equalsIgnoreCase("admin")) {
-    
+RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+rd.include(request, response);
+//Admin Access
+if (isLoggedIn && username.equalsIgnoreCase("admin")) {  
     List<User> list = (List<User>) request.getAttribute("userlist");
 %>
 <!DOCTYPE html>
@@ -55,9 +56,7 @@ if (isLoggedIn && username.equalsIgnoreCase("admin")) {
 				<td><button onclick="if(confirmDelete()) { window.location.href='deleteUser?username=<%= u.getUsername() %>'; }">Delete User</button></td>
 			<% } %>
 			</tr>
-			<% } 	       
-			RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-			rd.include(request, response);%>
+			<% } %>
 		</table>
 	</div>
 </body>

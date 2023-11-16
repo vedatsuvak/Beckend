@@ -55,12 +55,11 @@ if (success) {
 	<%}if (addparticipant){ %>
 	<h3>Participant added successfully...!</h3>
 	<%} %>
-	
 </body>
 </html>
 <%
-    } else {
-        // User is not logged in, redirect to login page
-        response.sendRedirect("login.jsp");
-    }
+} else {
+   // User is not logged in, redirect to login page
+   response.sendRedirect("login.jsp");
+}
 %>

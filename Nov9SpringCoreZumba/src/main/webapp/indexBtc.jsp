@@ -3,7 +3,6 @@
 <%@ page import="com.gms.model.Batch"%>
 <%@ page import="java.util.*"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>

@@ -13,9 +13,6 @@
 		    return confirm("Are you sure you want to DELETE your account?");
 		    session.setAttribute("actionSuccessful", true);
 		}
-		function confirmDelete() {
-		    return confirm("Dont fucking delete your shitty account..!");
-		}
 	</script>
 </head>
 <%		String username = (String) session.getAttribute("username");

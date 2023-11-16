@@ -1,16 +1,9 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.gms.model.Batch" %>
 <%@ page import="com.gms.DAO.BatchDAO"%>   
 <%@ page import="org.springframework.context.ApplicationContext"%>
 <%@ page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
-<% 
-//Include main.jsp page
-RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-rd.include(request, response);
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,26 +13,28 @@ rd.include(request, response);
 </head>
 <body class ="link-container">
 <%
-	boolean isLoggedIn = session.getAttribute("username") != null;
-	String username = (String) session.getAttribute("username");
-	ApplicationContext ac = new ClassPathXmlApplicationContext("zumba.xml");
-	BatchDAO bdao = ac.getBean(BatchDAO.class);
-	
-	//Admin
-	if (isLoggedIn && username.equalsIgnoreCase("admin")) {
-		// Get the product ID from the request parameter
-		int batchId = 0;
-		try {
-		    batchId = Integer.parseInt(request.getParameter("bid"));
-		} catch (NumberFormatException e) {
-		    // Handle the case when "bid" parameter is not a valid integer
-		    out.println("Invalid batch ID");
-            session.setAttribute("error", true);
-            session.setAttribute("editbatch", true);
-		    response.sendRedirect("error.jsp");
-		    return;
-		}
-		Batch selectedBatch = bdao.displayBatch(batchId);
+boolean isLoggedIn = session.getAttribute("username") != null;
+String username = (String) session.getAttribute("username");
+ApplicationContext ac = new ClassPathXmlApplicationContext("zumba.xml");
+BatchDAO bdao = ac.getBean(BatchDAO.class);
+//Include main.jsp page
+RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+rd.include(request, response);
+//Admin
+if (isLoggedIn && username.equalsIgnoreCase("admin")) {
+	// Get the product ID from the request parameter
+	int batchId = 0;
+	try {
+		batchId = Integer.parseInt(request.getParameter("bid"));
+	} catch (NumberFormatException e) {
+		 // Handle the case when "bid" parameter is not a valid integer
+		 out.println("Invalid batch ID");
+         session.setAttribute("error", true);
+         session.setAttribute("editbatch", true);
+		 response.sendRedirect("error.jsp");
+		 return;
+	}
+	Batch selectedBatch = bdao.displayBatch(batchId);
 %>       
 	<h1 ><i>Edit Batch: <%= batchId %></i></h1>
         <form action = "editBatch" method="POST">

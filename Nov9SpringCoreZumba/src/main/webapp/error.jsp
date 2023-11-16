@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,6 @@ boolean userdeleted = session.getAttribute("userdeleted") != null && (boolean) s
 boolean editparticipant = session.getAttribute("editparticipant") != null && (boolean) session.getAttribute("editparticipant");
 
 //Remove the session attribute to prevent direct access to the page via URL
-
 session.removeAttribute("addingfailed");
 session.removeAttribute("addbatch");
 session.removeAttribute("deletebatch");
@@ -59,11 +58,10 @@ if (error) {
 	<%}if (editparticipant){ %>
 	<h3>Editing Participant failed...!</h3>
 	<%} %>
-	
 </body>
 <%
- 	} else {
-    	response.sendRedirect("login.jsp");
- 	}
+} else {
+    response.sendRedirect("login.jsp");
+}
 %>
 </html>

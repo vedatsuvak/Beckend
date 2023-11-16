@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.gms.model.Participants"%>
 <%@ page import="java.util.*"%>
@@ -21,12 +20,13 @@
 <%
 boolean isLoggedIn = session.getAttribute("username") != null;
 String username = (String) session.getAttribute("username");
+RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+rd.include(request, response);
 Participants participant = new Participants();
 List<Participants> list = (List<Participants>) request.getAttribute("participantslist");
 int bid =(Integer) request.getAttribute("bid");
 // Admin Page
-if (isLoggedIn && username.equalsIgnoreCase("admin")) {
-	
+if (isLoggedIn && username.equalsIgnoreCase("admin")) {	
 %>
     <div style="text-align: center;">
         <h1><i>List of Participants in Batch :<%= bid %></i></h1>
@@ -57,13 +57,10 @@ if (isLoggedIn && username.equalsIgnoreCase("admin")) {
 					<td><button onclick="window.location.href='editParticipant.jsp?pid=<%= p.getPid() %>'" value="<%= request.getParameter("pid") %>">Edit Participant</button></td>                    
 					<td><button onclick="if(confirmDelete()) { window.location.href='deleteParticipant?pid=<%= p.getPid() %>'; }">Unregister Participant</button></td>
                 </tr>
-            <% } 
-            RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-			rd.include(request, response);%>
+            <% } %>
         </table>
     </div>
    	<p style="font-size: 10px; color: red;">Warning: If a Participant deleted, you can not see that Participant ID anymore...!</p>
-    
 <%
 // User Page
 } else if (isLoggedIn && !username.equalsIgnoreCase("admin")) {
@@ -89,9 +86,7 @@ if (isLoggedIn && username.equalsIgnoreCase("admin")) {
                     <td><%= p.getAge() %></td>
                     <td><%= p.getGender().toUpperCase() %></td>
 				</tr>
-            <% } 
-            RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-			rd.include(request, response);%>
+            <% } %>
         </table>
     </div>
 <%

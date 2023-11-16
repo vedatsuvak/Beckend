@@ -2,7 +2,6 @@
 <%@ page import="com.gms.model.Batch"%>
 <%@ page import="java.util.*"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +49,8 @@ if (isLoggedIn) {
 <%
 //If not logged in
 } else {
-    // User is not logged in
-    response.sendRedirect("login.jsp");
+	// User is not logged in
+	response.sendRedirect("login.jsp");
 }
 %>
 </body>
