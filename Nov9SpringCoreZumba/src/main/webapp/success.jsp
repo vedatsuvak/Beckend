@@ -3,26 +3,7 @@
 <%
 // Check if the action was successful
 boolean success = request.getAttribute("success") != null;
-boolean userdeleted = session.getAttribute("userdeleted") != null && (boolean) session.getAttribute("userdeleted");
-boolean useredited = session.getAttribute("useredited") != null && (boolean) session.getAttribute("useredited");
-boolean addbatch = session.getAttribute("addbatch") != null && (boolean) session.getAttribute("addbatch");
-boolean deletebatch = session.getAttribute("deletebatch") != null && (boolean) session.getAttribute("deletebatch");
-boolean deleteparticipant = session.getAttribute("deleteparticipant") != null && (boolean) session.getAttribute("deleteparticipant");
-boolean editbatch = session.getAttribute("editbatch") != null && (boolean) session.getAttribute("editbatch");
-boolean startbatch = session.getAttribute("startbatch") != null && (boolean) session.getAttribute("startbatch");
-boolean addparticipant = session.getAttribute("addparticipant") != null && (boolean) session.getAttribute("addparticipant");
-
-// Remove the session attribute to prevent direct access to the page via URL
-session.removeAttribute("userdeleted");
-session.removeAttribute("useredited");
-session.removeAttribute("addbatch");
-session.removeAttribute("deletebatch");
-session.removeAttribute("deleteparticipant");
-session.removeAttribute("editbatch");
-session.removeAttribute("startbatch");
-session.removeAttribute("addparticipant");
-
-//Restrict direct access to page
+//Restrict direct access
 if (success) {
 	String successMessage = (String) request.getAttribute("success");
    	RequestDispatcher rd=request.getRequestDispatcher("main.jsp");
@@ -31,30 +12,15 @@ if (success) {
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"></head>
+	<link href="/Nov9SpringCoreZumba/css/styles.css" rel="stylesheet"></link>
     <title>Insert title here</title>
 </head>
-<body class="link-container">
-    <h3 class="link-container"><i>The action has been done successfully...!!</i></h3>
-    <%=successMessage %>
-    <% if (userdeleted){ %>
-	<h3>User deleted...!</h3>
-	<%}if (useredited){ %>
-	<h3>User edited successfully...!</h3>
-	<%}if (addbatch){ %>
-	<h3>Batch added successfully...!</h3>
-	<%}if (deletebatch){ %>
-	<h3>Batch deleted successfully...!</h3>
-	<%}if (deleteparticipant){ %>
-	<h3>Participant unregistered from Batch successfully...!</h3>
-	<%}if (editbatch){ %>
-	<h3>Batch edited successfully...!</h3>
-	<%}if (startbatch){ %>
-	<h3>Batch Started successfully...!</h3>
-	<h3>Message Sent to all Participants...!</h3>
-	<%}if (addparticipant){ %>
-	<h3>Participant added successfully...!</h3>
-	<%} %>
+<body class="link-container text-center"><br>
+    <h3 class="link-container text-white"><i>DONE...!!</i></h3>
+    <h2 class="text-white"><%=successMessage %></h2>
 </body>
 </html>
 <%

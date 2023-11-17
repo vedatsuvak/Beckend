@@ -1,83 +1,35 @@
 @charset "UTF-8";
 
-.link-container {
-    text-align: center;
-}
-
-.link-container a {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.welcome {
-	text-align: right
-}
-
-.container {
-  border: none;
-  margin: 20px;
-  margin-left: 37%;
-}
-
-.container h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.container table {
-  border-collapse: collapse;
-}
-
-.container td {
-  padding: 5px;
-  border: none;
-}
-
-.label {
-  font-weight: bold;
-  text-align: left;
-}
-
-.right {
-	text-align: right;
-}
-
-.left{
-	text-align: left;
-}
-
-.form {
-	text-align: left;
-}
-
 .warningmessage {
 	font-size: 10px; 
 	color: red;
 }
 
+.center {
+	text-align: center;
+}
+
 a.vlink {
         color : #efefef;
         position:relative;
-        height:54px;
-        width:72px;
+        height:50px;
+        width:52px;
         text-align:center;
-        line-height:54px;
+        line-height:50px;
         display:block;
         font-size:1.2rem;
       }
       a.vlink span {
         position : absolute;
+        top: 0px; right: 74px;
         opacity: 0;
         transition : transform 400ms ease-out;
         margin-left:24px;
         box-shadow : 2px 4px 3px 1px rgba(0,0,0,0.2)
       }
-      a.vlink:nth-of-type(odd){
-      
-      }
       
       a.vlink span:before {
-        content : '';
+        content : '⛅';
         display:block;
         width:0;
         height:0;
@@ -85,7 +37,7 @@ a.vlink {
         border-top:8px solid transparent;
         border-bottom:8px solid transparent;
         border-right:8px solid #000;
-        left:-12px;
+        left:106px;
         top:33%;
       }
       a.vlink span:hover {
@@ -121,3 +73,4 @@ a.vlink {
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
         box-shadow :-6px 12px 5px 2px rgba(145,145,145,0.5)
       }
+      

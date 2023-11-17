@@ -26,7 +26,12 @@ public class BatchDAO {
     public int insertBatch(Batch batch) throws ClassNotFoundException, SQLException {
         int result = 0;
         String sql = "INSERT INTO batch VALUES ('"+0+"' ,'" + batch.getBname() + "', '" + batch.getInstructor() + "', '" + batch.getStartTime() + "', '" + batch.getStartDate() + "')";
-        result = temp.update(sql);
+        try {
+			result = temp.update(sql);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if(result > 0) {
         	System.out.println("[DB] Batch added");
 	    }else {
@@ -86,7 +91,11 @@ public class BatchDAO {
     public int editBatch(Batch batch) throws ClassNotFoundException, SQLException {
         int result = 0;
         String sql = "UPDATE batch SET bname ='" + batch.getBname() + "', instructor ='" + batch.getInstructor() + "', startTime ='" + batch.getStartTime() + "', startDate ='" + batch.getStartDate() + "' WHERE bid ='" + batch.getBid() + "'";
-        result = temp.update(sql);
+        try {
+			result = temp.update(sql);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
         if (result > 0) {
         	System.out.println("[DB] Batch edited");
         }else {
@@ -99,7 +108,6 @@ public class BatchDAO {
     // Delete
     public int deleteBatch(int bid) throws ClassNotFoundException, SQLException {
         int result = 0;
-	
             String sql = "DELETE FROM batch WHERE bid =" + bid + "";
             try {
 				result = temp.update(sql);
@@ -122,10 +130,7 @@ public class BatchDAO {
         List<Participants> list = null;
 		try {
 			list = pdao.BatchParticipants(bid);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -138,7 +143,6 @@ public class BatchDAO {
 					result++;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         System.out.println("[DB] Batch started");

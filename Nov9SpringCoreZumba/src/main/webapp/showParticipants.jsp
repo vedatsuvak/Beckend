@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.gms.model.Participants"%>
 <%@ page import="java.util.*"%>
-<%@ page import="javax.servlet.RequestDispatcher"%>
-<%@ page import="javax.servlet.http.HttpServletResponse"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,76 +24,84 @@ rd.include(request, response);
 Participants participant = new Participants();
 List<Participants> list = (List<Participants>) request.getAttribute("participantslist");
 int bid =(Integer) request.getAttribute("bid");
-// Admin Page
-if (isLoggedIn && username.equalsIgnoreCase("admin")) {	
 %>
-    <div style="text-align: center;">
-        <h1><i>List of Participants in Batch :<%= bid %></i></h1>
-	       <form action="addParticipant.jsp" method="POST">
-			    <label for="name"></label>
-			    <input type="hidden" id="bid" name="bid" value="<%= bid %>"><br>			    
-			    <input type="submit" value="Add Participant">
-			</form><br>
-        <table style="margin: 0 auto;" border="1">
-            <tr>
-                <th>Participant ID</th>
-                <th>Participant Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Edit Action</th>
-                <th>Unregister</th>
-            </tr>
-            <% for (Participants p : list) { %>
-                <tr>
-                    <td><%= p.getPid() %></td>
-                    <td><%= p.getPname().toUpperCase() %></td>
-                    <td><%= p.getAge() %></td>
-                    <td><%= p.getGender().toUpperCase() %></td>
-                    <td><%= p.getPhone() %></td>
-                    <td><%= p.getEmail().toLowerCase() %></td>
-					<td><button onclick="window.location.href='editParticipant.jsp?pid=<%= p.getPid() %>'" value="<%= request.getParameter("pid") %>">Edit Participant</button></td>                    
-					<td><button onclick="if(confirmDelete()) { window.location.href='deleteParticipant?pid=<%= p.getPid() %>'; }">Unregister Participant</button></td>
-                </tr>
-            <% } %>
-        </table>
-    </div>
-   	<p style="font-size: 10px; color: red;">Warning: If a Participant deleted, you can not see that Participant ID anymore...!</p>
-<%
-// User Page
-} else if (isLoggedIn && !username.equalsIgnoreCase("admin")) {
-%>
-    <div style="text-align: center;">
-        <h1><i>Registered Participants of Batch :<%= bid %></i></h1>
-	       <form action="addParticipant.jsp" method="POST">
-			    <label for="name"></label>
-			    <input type="hidden" id="bid" name="bid" value="<%= bid %>"><br>			    
-			    <input type="submit" value="Register this Batch">
-			</form><br>
-        <table style="margin: 0 auto;" border="1">
-            <tr>
-                <th>Participant ID</th>
-                <th>Participant Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-            </tr>
-            <% for (Participants p : list) { %>
-				<tr>	
-                    <td><%= p.getPid() %></td>
-                    <td><%= p.getPname().toUpperCase() %></td>
-                    <td><%= p.getAge() %></td>
-                    <td><%= p.getGender().toUpperCase() %></td>
-				</tr>
-            <% } %>
-        </table>
-    </div>
-<%
-} else {
-    // User is not logged in
-    HttpServletResponse httpResponse = (HttpServletResponse) response;
-    httpResponse.sendRedirect("login.jsp");
-}
-%>
+<br>
+	<div>
+		<h2 class="text-center text-white"><i>List of Participants in Batch :<%= bid %></i></h2>
+	</div>
+	<section class="intro">
+		<div class="gradient-custom-2 h-100">
+			<div class="mask d-flex align-items-center h-100">
+				<div class="container">
+		        	<div class="row justify-content-center">
+		          		<div class="col-10">
+		            		<div class="table-responsive">
+			              		<table class="table table-dark table-bordered mb-0">
+			                		<thead>
+	       					 			<% if (isLoggedIn && username.equalsIgnoreCase("admin")) { %>
+								            <tr>
+											    <th scope="col" colspan="8" class="text-center">
+											        <form action="addParticipant.jsp" method="POST">
+											            <input type="hidden" id="bid" name="bid" value="<%= bid %>">
+											            <button type="submit">Add Participant</button>
+											        </form>
+											    </th>
+											</tr>
+								            <tr>
+								                <th scope="col">Participant ID</th>
+								                <th scope="col">Participant Name</th>
+								                <th scope="col">Age</th>
+								                <th scope="col">Gender</th>
+								                <th scope="col">Phone</th>
+								                <th scope="col">Email</th>
+								                <th scope="col">Edit Action</th>
+								                <th scope="col">Unregister</th>
+								            </tr>
+							            <% for (Participants p : list) { %>
+							                <tr>
+							                    <td><%= p.getPid() %></td>
+							                    <td><%= p.getPname().toUpperCase() %></td>
+							                    <td><%= p.getAge() %></td>
+							                    <td><%= p.getGender().toUpperCase() %></td>
+							                    <td><%= p.getPhone() %></td>
+							                    <td><%= p.getEmail().toLowerCase() %></td>
+												<td><button onclick="window.location.href='editParticipant.jsp?pid=<%= p.getPid() %>'" value="<%= request.getParameter("pid") %>">Edit Participant</button></td>                    
+												<td><button onclick="if(confirmDelete()) { window.location.href='deleteParticipant?pid=<%= p.getPid() %>'; }">Unregister Participant</button></td>
+							                </tr>
+							            <% } } else if (isLoggedIn && !username.equalsIgnoreCase("admin")) { %>
+							            	<tr>
+								            	<th scope="col" colspan='8' class="text-center">
+									            	<form action="addParticipant.jsp" method="POST">
+													    <input type="hidden" id="bid" name="bid" value="<%= bid %>"><br>			    
+													    <input type="submit" value="Register to this Batch">
+													</form>
+								            	</th>
+								            </tr>  
+								            <tr>
+								                <th>Participant ID</th>
+								                <th>Participant Name</th>
+								                <th>Age</th>
+								                <th>Gender</th>
+								            </tr>
+								            <% for (Participants p : list) { %>
+											<tr>	
+								                <td><%= p.getPid() %></td>
+								                <td><%= p.getPname().toUpperCase() %></td>
+								                <td><%= p.getAge() %></td>
+								                <td><%= p.getGender().toUpperCase() %></td>
+											</tr>
+								            <% } } else {
+												    HttpServletResponse httpResponse = (HttpServletResponse) response;
+												    httpResponse.sendRedirect("login.jsp"); } %>		            
+			 						</thead>
+			 					</table>
+		 					</div>
+		 				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>									            
+   	<p style="font-size: 10px; color: red;">Warning: If a Participant unregistered, you can not see that Participant ID anymore...!</p>
 </body>
 </html>

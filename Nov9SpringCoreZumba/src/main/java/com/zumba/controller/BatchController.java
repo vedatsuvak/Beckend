@@ -3,14 +3,11 @@ package com.zumba.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -129,7 +126,7 @@ public class BatchController {
         int bid = Integer.parseInt(request.getParameter("bid"));
         List<Participants> participantslist = pdao.BatchParticipants(bid);
         if (participantslist != null) {
-            System.out.println("[C] All Batches listed...!");
+            System.out.println("[C] Batch: "+ bid +"'s Participants listed...!");
             mv.addObject("bid", bid);
             mv.addObject("participantslist", participantslist);
             mv.setViewName("showParticipants.jsp");
@@ -202,7 +199,6 @@ public class BatchController {
     	ApplicationContext ac = new ClassPathXmlApplicationContext("zumba.xml");
     	ModelAndView mv = new ModelAndView();
     	BatchDAO bdao = ac.getBean(BatchDAO.class);
-    	Batch batch = ac.getBean(Batch.class);
     	int result = 0;
     	int bid = 0;
     	try {

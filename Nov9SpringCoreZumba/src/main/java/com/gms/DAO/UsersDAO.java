@@ -76,7 +76,12 @@ public class UsersDAO {
 		ParticipantsDAO pdao = ac.getBean(ParticipantsDAO.class);
 	    String sql = "UPDATE users SET username ='"+newUserName+"', password ='"+newPassword+"', email ='"+newEmail+"' WHERE username ='"+oldUserName+"'";
 	    int result = 0;
-	    result = temp.update(sql) + pdao.updateParticipant(oldUserName, newUserName, newEmail);
+	    try {
+			result = temp.update(sql) + pdao.updateParticipant(oldUserName, newUserName, newEmail);
+		} catch (DataAccessException | ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    if(result > 0) {
 	    	System.out.println("[DB] User edited");
 	    }else {
@@ -92,7 +97,12 @@ public class UsersDAO {
 	       ApplicationContext ac = new ClassPathXmlApplicationContext("zumba.xml");
 	       ParticipantsDAO pdao = ac.getBean(ParticipantsDAO.class);
 	       int result = 0;
-	       result = temp.update(sql) + pdao.deleteParticipant(selectedUsername);
+	       try {
+			result = temp.update(sql) + pdao.deleteParticipant(selectedUsername);
+		} catch (DataAccessException | ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	       if(result > 0) {
 	    	   System.out.println("[DB] User deleted");
 	       }else {

@@ -7,7 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="<c:url value="/css/styles.css" />" rel="stylesheet"></link>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"></head>
+	<link href="/Nov9SpringCoreZumba/css/styles.css" rel="stylesheet"></link>
 	    <script>
 		function confirmDelete() {
 		    return confirm("Are you sure you want to DELETE your account?");
@@ -27,38 +28,76 @@
 		%>
 		
 <body class="link-container">
+<br>
 	<div>
-	<h2 class="link-container">Profile</h2>
-	<table class="container">
-		<tr><td class="label">User Name</td><td>:</td><td class='label'><%= name.toUpperCase() %></td></tr>
-		<tr><td class="label">Password</td><td>:</td><td class='label'><%= "*".repeat(password.length())  %></td></tr>
-		<tr><td class="label">Email</td><td>:</td><td class='label'><%= email %></td></tr>
-	</table>
+		<h2 class="text-center text-white">Profile</h2>
 	</div>
-	<%if (!name.equalsIgnoreCase("admin")) { %>
-      
-    <form action="editUser.jsp">
-        <input type="hidden" name="username" value="<%=name %>">
-        <input type="submit" value="Edit User">
-    </form><br>
-       
-    <form action="deleteUser?username=" method="get" onsubmit="return confirmDelete();">
-    	<input type="hidden" name="username" value="<%= name %>">
-       <p>Do you want to delete your account?</p>
-       <p>Please don't abandon us!</p>
-       <p>If you insist, then click the button below :</p>
-       <input type="submit" value="Destroy"> my account..!
-    </form>
-        
-   <% } else { %>
-    <form action="editUser.jsp">
-        <input type="hidden" name="username" value="<%=name %>">
-       <input type="submit" value="Edit Email and Password">
-    </form><br>
-    <h3 class="link-container">Admin Cannot be Deleted</h3>
-       
-   <%  } %>
-
+	<section class="intro">
+		<div class="gradient-custom-2 h-100">
+			<div class="mask d-flex align-items-center h-100">
+				<div class="container">
+		        	<div class="row justify-content-center">
+		          		<div class="col-6">
+		            		<div class="table-responsive">
+		              			<table class="table table-dark table-bordered mb-0">
+		                			<thead>             			
+										<tr>
+											<th scope="col">User Name</th>
+											<th scope="col"><%= name.toUpperCase() %></th>
+										</tr>
+										<tr>
+											<th scope="col">Password</th>
+											<th scope="col"><%= "*".repeat(password.length())  %></th>
+										</tr>
+										<tr>
+											<th scope="col">Email</th>
+											<th scope="col"><%= email %></th>
+										</tr>
+										<%if (!name.equalsIgnoreCase("admin")) { %>
+										<tr>
+											<th colspan="2" class="text-center">
+												<form action="editUser.jsp">
+											        <input type="hidden" name="username" value="<%=name %>">
+											        <input type="submit" value="Edit User">
+											    </form>
+											</th>
+										</tr>
+										
+										<tr>  
+											<th colspan="2" class="text-center">
+											    <form action="deleteUser?username=" method="get" onsubmit="return confirmDelete();">
+											    	<input type="hidden" name="username" value="<%= name %>">
+											       <p>Do you want to delete your account?</p>
+											       <p>Please don't abandon us!</p>
+											       <p>If you insist, then click the button below :</p>
+											       <input type="submit" value="Destroy"> my account..!
+											    </form>
+											</th>
+										</tr>
+  								 		<% } else { %>
+										<tr >
+											<th colspan="2" class="text-center">
+												<form action="editUser.jsp">
+											        <input type="hidden" name="username" value="<%=name %>">
+											       <input type="submit" value="Edit Email and Password">
+											    </form>
+											</th>
+										</tr>
+										<tr>
+											<th colspan="2" class="text-center">
+											   Admin Cannot be Deleted
+											</th>
+										</tr>
+										<%  } %>
+		 							</thead>
+		 						</table>
+		 					</div>
+		 				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 <%} else {
 	HttpServletResponse httpResponse = (HttpServletResponse) response;

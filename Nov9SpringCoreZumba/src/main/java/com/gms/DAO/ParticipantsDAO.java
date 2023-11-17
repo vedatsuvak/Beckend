@@ -28,7 +28,7 @@ public class ParticipantsDAO {
     // Insert
     public int insertParticipant(Participants participant) throws ClassNotFoundException, SQLException {
     	String sql = "INSERT INTO participants VALUES ('0', '"+participant.getPname().toUpperCase()+"', '"+participant.getAge()+"', '"+participant.getGender()+"', '"+participant.getPhone()+"', '"+participant.getEmail()+"', '"+participant.getBid()+"')";
-    	System.out.println("[DB] Participant added to Batch" + participant.getBid());
+    	System.out.println("[DB] Participant added to Batch: " + participant.getBid());
     	return temp.update(sql);
     }
     
@@ -168,7 +168,12 @@ public class ParticipantsDAO {
         int bid = participant.getBid();
         int pid = participant.getPid();
         String sql = "UPDATE participants SET pname ='" + pname + "' , age = '" + age + "', gender = '" + gender + "', phone ='" + phone + "', email ='" + email + "', bid ='" + bid + "' WHERE pid ='" + pid + "'";
-        result = temp.update(sql);
+        try {
+			result = temp.update(sql);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    if(result > 0) {
 	    	System.out.println("[DB] Participat Edited");
 	    }else {
@@ -182,7 +187,12 @@ public class ParticipantsDAO {
     public int updateParticipant(String oldUserName, String newUserName, String newEmail) throws ClassNotFoundException, SQLException {
             String sql = "UPDATE participants SET pname ='"+newUserName+"', email ='"+newEmail+"' WHERE pname ='"+oldUserName+"'";            
             int result = 0;
-            result = temp.update(sql);
+            try {
+				result = temp.update(sql);
+			} catch (DataAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             if (result >0 ) {
             	System.out.println("[DB] Participat updated: " + newUserName.toUpperCase());
             }else {
@@ -232,7 +242,12 @@ public class ParticipantsDAO {
     public int deleteParticipant(String username) throws ClassNotFoundException, SQLException {
         int result = 0;
         String sql = "DELETE FROM participants WHERE pname ='"+username+"'";
-        result = temp.update(sql);
+        try {
+			result = temp.update(sql);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if(result > 0) {
             System.out.println("[DB] Participat "+ username.toUpperCase() +" deleted from all Batches");
         }else {
