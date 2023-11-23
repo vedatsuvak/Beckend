@@ -2,7 +2,7 @@
 <%@ page import="com.gms.model.Participants"%>
 <%@ page import="java.util.*"%>
 <%@ page import="javax.servlet.RequestDispatcher"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
