@@ -92,10 +92,17 @@
 		    <version>5.6.0</version>
 		    <scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
-			<groupId>Nov4SpringCore</groupId>
-			<artifactId>Core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>6.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>6.1.0</version>
 		</dependency>
 	</dependencies>
   <build>
